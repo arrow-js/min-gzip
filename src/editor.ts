@@ -1,5 +1,6 @@
 import { html, nextTick } from '@arrow-js/core'
 import store from './store'
+import { compressUrlCode } from './utils'
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
@@ -37,6 +38,7 @@ export default function editor() {
     })
     editor.getModel()?.onDidChangeContent(() => {
       store.code = editor.getModel()?.getLinesContent().join('\n') ?? ''
+      compressUrlCode(store.code, 'editor')
     })
 
     store.$on('theme', () => {

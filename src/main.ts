@@ -1,6 +1,6 @@
 import './style.css'
 import store from './store'
-import { html, watch } from '@arrow-js/core'
+import { html } from '@arrow-js/core'
 import editor from './editor'
 import results from './results'
 import themeToggle from './themeToggle'
