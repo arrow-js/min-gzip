@@ -25,44 +25,46 @@ html`
   </div>
   <div class="container">
     <header>
-      <div class="os-controls" role="none">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="header-container">
+        <div class="os-controls" role="none">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="options">
+          <div class="form-element">
+            <input
+              type="checkbox"
+              name="minify"
+              id="minify"
+              @input="${setOption('useMinify')}"
+              checked="${() => store.useMinify}"
+            />
+            <label for="minify" id="minify">Minify</label>
+          </div>
+          <div class="form-element">
+            <input
+              type="checkbox"
+              name="gzip"
+              id="gzip"
+              @input="${setOption('useGzip')}"
+              checked="${() => store.useGzip}"
+            />
+            <label for="gzip" id="gzip">Gzip</label>
+          </div>
+          <div class="form-element">
+            <input
+              type="checkbox"
+              name="brotli"
+              id="brotli"
+              @input="${setOption('useBrotli')}"
+              checked="${() => store.useBrotli}"
+            />
+            <label for="brotli" id="brotli">Brotli</label>
+          </div>
+        </div>
+        ${results()} ${themeToggle()}
       </div>
-      <div class="options">
-        <div class="form-element">
-          <input
-            type="checkbox"
-            name="minify"
-            id="minify"
-            @input="${setOption('useMinify')}"
-            checked="${() => store.useMinify}"
-          />
-          <label for="minify" id="minify">Minify</label>
-        </div>
-        <div class="form-element">
-          <input
-            type="checkbox"
-            name="gzip"
-            id="gzip"
-            @input="${setOption('useGzip')}"
-            checked="${() => store.useGzip}"
-          />
-          <label for="gzip" id="gzip">Gzip</label>
-        </div>
-        <div class="form-element">
-          <input
-            type="checkbox"
-            name="brotli"
-            id="brotli"
-            @input="${setOption('useBrotli')}"
-            checked="${() => store.useBrotli}"
-          />
-          <label for="brotli" id="brotli">Brotli</label>
-        </div>
-      </div>
-      ${results()} ${themeToggle()}
     </header>
     <main>${editor()}</main>
   </div>
