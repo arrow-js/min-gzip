@@ -10,10 +10,12 @@ const setOption = (option: string) => (e: InputEvent) => {
   store[option] = (e.target as HTMLInputElement).checked
 }
 
-// add gitub star button when component loads
-const script = document.createElement('script')
-script.src = 'https://buttons.github.io/buttons.js'
-document.head.appendChild(script)
+// add gitub star button after component loads
+setTimeout(() => {
+  const script = document.createElement('script')
+  script.src = 'https://buttons.github.io/buttons.js'
+  document.head.appendChild(script)
+}, 10)
 
 html`
   <div class="branding">
