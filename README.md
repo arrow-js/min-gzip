@@ -1,8 +1,8 @@
 # min-gzip.com
 
-This is a simple web app that allows you to copy and paste Typescript or JavaScript and see the size of the file after it has been minified + gzipped/brotlied. Although the code needs to be valid in order to be minified, the Typescript typings are automatically striped.
+This is a simple web app that allows you to copy and paste Typescript or JavaScript and see the size of the file after it has been minified + gzipped/brotlied. Although the code needs to be valid in order to be minified, the Typescript typings are automatically striped — so you can count on the resulting calculated sizes to be accurate.
 
-This is particularly helpful when you are trying to optimize the size of your JavaScript bundle, and need to understand which implementation techniques are the most size efficient when went "over the wire".
+This is particularly helpful when you are trying to optimize the size of your JavaScript bundle and need to understand which implementation techniques are the most size efficient when sent "over the wire".
 
 👉 [min-gzip.com](https://min-gzip.com)
 
