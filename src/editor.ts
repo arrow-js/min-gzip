@@ -44,7 +44,6 @@ export default async function editor() {
       store.code = editor.getModel()?.getLinesContent().join('\n') ?? ''
 
       editorUpdateDebounce = setTimeout(() => {
-        console.log('debounced')
         compressUrlCode('editor', store.code)
       }, 1000)
     })

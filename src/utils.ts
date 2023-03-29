@@ -22,19 +22,26 @@ export async function compressUrlCode(param: string, code: string) {
   const brotli = await brotliPromise
   const textEncoder = new TextEncoder()
   const compressed = brotli.compress(textEncoder.encode(code))
-  const base64 = btoa(String.fromCharCode(...compressed))
   const url = new URL(window.location.href)
-  url.searchParams.set(param, base64)
+  url.searchParams.set(param, compressed.join('.'))
   history.replaceState(null, '', url.toString())
 }
 
 export async function decompressUrlCode(param: string) {
   const brotli = await brotliPromise
   const textDecoder = new TextDecoder()
-  const base64 = new URLSearchParams(window.location.search).get(param)
-  if (!base64) return ''
-  const compressed = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
-  const decompressed = brotli.decompress(compressed)
-  const code = textDecoder.decode(decompressed)
-  return code
+  const compressedString = new URLSearchParams(window.location.search).get(
+    param
+  )
+  if (!compressedString) return ''
+  const compressed = Uint8Array.from(
+    compressedString.split('.').map((n) => Number(n))
+  )
+  try {
+    const decompressed = brotli.decompress(compressed)
+    const code = textDecoder.decode(decompressed)
+    return code
+  } catch (error) {
+    return ''
+  }
 }
