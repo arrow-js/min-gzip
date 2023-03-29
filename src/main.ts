@@ -10,6 +10,11 @@ const setOption = (option: string) => (e: InputEvent) => {
   store[option] = (e.target as HTMLInputElement).checked
 }
 
+// add gitub star button when component loads
+const script = document.createElement('script')
+script.src = 'https://buttons.github.io/buttons.js'
+document.head.appendChild(script)
+
 html`
   <div class="branding">
     <h1>
@@ -22,6 +27,17 @@ html`
       min-gzip
     </h1>
     <a href="https://arrow-js.com" target="_blank">by ArrowJS</a>
+
+    <div class="github-star">
+      <a
+        class="github-button"
+        href="https://github.com/arrow-js/min-gzip"
+        data-color-scheme="no-preference: light; light: light; dark: light;"
+        data-icon="octicon-star"
+        aria-label="Star arrow-js/min-gzip on GitHub"
+        >Star</a
+      >
+    </div>
   </div>
   <div class="container">
     <header>

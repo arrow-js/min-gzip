@@ -66,6 +66,9 @@ html[data-theme='dark'] body {
   margin-bottom: 0.33em;
   color: var(--link);
 }
+.branding .github-star {
+  margin-left: auto;
+}
 
 header {
   height: var(--header-height);
