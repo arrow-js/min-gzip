@@ -9,7 +9,7 @@
 html[data-theme='dark'] {
   --text: #e8eaee;
   --link: #ffb000;
-  --editor-bg: #2c2c2f;
+  --editor-bg: #242426;
   --border: rgba(255, 255, 255, 0.1);
   --bg-transparent: rgba(255, 255, 255, 0.05);
 }
@@ -180,7 +180,7 @@ footer a {
   border-radius: 0.5em;
   border: var(--border) 1px solid;
   font-family: monospace;
-  font-size: 1.1em;
+  font-size: 11px;
   letter-spacing: -0.05em;
   white-space: nowrap;
 }
@@ -189,7 +189,7 @@ footer a {
   margin-right: 0.5em;
   font-weight: 600;
   font-family: sans-serif;
-  font-size: 0.8rem;
+  font-size: 12px;
   letter-spacing: 0.035em;
   background: var(--bg-transparent);
   border-right: var(--border) 1px solid;
