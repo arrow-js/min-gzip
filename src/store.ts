@@ -12,6 +12,11 @@ const store = reactive({
   useGzip: true,
   useBrotli: false,
   useMinify: true,
+  theme:
+    localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'),
 })
 
 export default store

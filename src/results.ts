@@ -1,4 +1,5 @@
 import store from './store'
+import { formatBytes } from './utils'
 import { html } from '@arrow-js/core'
 
 export default function () {
@@ -6,13 +7,27 @@ export default function () {
     <ul class="results">
       ${() =>
         store.useMinify &&
-        html` <li class="result minify">min: ${() => store.min}B</li> `}
+        html`
+          <li class="result minify">
+            <span>min:</span> ${() => formatBytes(store.min)}
+          </li>
+        `}
       ${() =>
         store.useGzip &&
-        html` <li class="result gzip">gzip: ${() => store.gzip}B</li> `}
+        html`
+          <li class="result gzip">
+            <span>${() => (store.useMinify ? 'min-gzip' : 'gzip')}:</span>
+            ${() => formatBytes(store.gzip)}
+          </li>
+        `}
       ${() =>
         store.useBrotli &&
-        html` <li class="result brotli">brotli: ${() => store.brotli}B</li> `}
+        html`
+          <li class="result brotli">
+            <span>${() => (store.useMinify ? 'min-brotli' : 'brotli')}:</span>
+            ${() => formatBytes(store.brotli)}
+          </li>
+        `}
     </ul>
   `
 }

@@ -32,9 +32,15 @@ export default function editor() {
     const editor = editorApi.editor.create(document.getElementById('editor')!, {
       language: 'typescript',
       value: store.code,
+      automaticLayout: true,
+      theme: store.theme === 'dark' ? 'vs-dark' : 'vs',
     })
     editor.getModel()?.onDidChangeContent(() => {
       store.code = editor.getModel()?.getLinesContent().join('\n') ?? ''
+    })
+
+    store.$on('theme', () => {
+      editor.updateOptions({ theme: store.theme === 'dark' ? 'vs-dark' : 'vs' })
     })
   })
 
