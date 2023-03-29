@@ -4,6 +4,14 @@
   --editor-bg: #fff;
   --border: rgba(0, 0, 0, 0.1);
   --bg-transparent: rgba(0, 0, 0, 0.05);
+  --header-height: 2em;
+  --inset: 2em;
+}
+
+@media (min-width: 30em) {
+  :root {
+    --inset: 6em;
+  }
 }
 
 html[data-theme='dark'] {
@@ -36,7 +44,7 @@ html[data-theme='dark'] body {
 }
 
 .branding {
-  width: calc(100% - 6em);
+  width: calc(100% - var(--inset));
   color: var(--text);
   display: flex;
   align-items: flex-end;
@@ -60,18 +68,31 @@ html[data-theme='dark'] body {
 }
 
 header {
-  height: 2em;
+  height: var(--header-height);
+  color: var(--text);
+  border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+header::-webkit-scrollbar {
+  display: none;
+}
+
+.header-container {
   display: flex;
   font-size: 0.875em;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.25em 1em;
-  color: var(--text);
-  border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+  padding: 0 1em;
+  width: 100%;
 }
 
 main {
-  height: calc(100% - 2em);
+  height: calc(100% - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,8 +112,8 @@ footer a {
 }
 
 .container {
-  width: calc(100% - 6em);
-  height: calc(100vh - 8em);
+  width: calc(100% - var(--inset));
+  height: calc(100vh - (6em + var(--header-height)));
   margin: 0 auto;
   overflow: hidden;
   background-color: var(--editor-bg);
@@ -169,6 +190,8 @@ footer a {
 .results {
   display: flex;
   list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: auto;
 }
 .results li {
