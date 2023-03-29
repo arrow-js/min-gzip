@@ -28,13 +28,14 @@ monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 export default async function editor() {
   const el = html`<div id="editor" class="editor"></div>`
   const code = await decompressUrlCode('editor')
+  if (code) store.code = code
   let editorUpdateDebounce = 0
 
   nextTick(async () => {
     await new Promise((r) => setTimeout(r))
     const editor = editorApi.editor.create(document.getElementById('editor')!, {
       language: 'typescript',
-      value: code || store.code,
+      value: store.code,
       automaticLayout: true,
       theme: store.theme === 'dark' ? 'vs-dark' : 'vs',
     })
