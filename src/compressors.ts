@@ -57,11 +57,13 @@ watch(
 
     if (store.useBrotli) {
       promises.push(
-        brotliInit.then((brotli) => {
-          const textEncoder = new TextEncoder()
-          const compressed = brotli.compress(textEncoder.encode(code))
-          results.brotli = compressed.length
-        })
+        Promise.all(promises)
+          .then(() => brotliInit)
+          .then((brotli) => {
+            const textEncoder = new TextEncoder()
+            const compressed = brotli.compress(textEncoder.encode(code))
+            results.brotli = compressed.length
+          })
       )
     }
     return Promise.all(promises).then(() => [results, localNonce])
