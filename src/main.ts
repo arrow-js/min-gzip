@@ -15,7 +15,7 @@ setTimeout(() => {
   const script = document.createElement('script')
   script.src = 'https://buttons.github.io/buttons.js'
   document.head.appendChild(script)
-}, 10)
+}, 100)
 
 html`
   <div class="branding">
