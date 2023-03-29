@@ -66,7 +66,7 @@ html`
         ${results()} ${themeToggle()}
       </div>
     </header>
-    <main>${editor()}</main>
+    <main>${await editor()}</main>
   </div>
 
   <footer>

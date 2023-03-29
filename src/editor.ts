@@ -1,6 +1,6 @@
 import { html, nextTick } from '@arrow-js/core'
 import store from './store'
-import { compressUrlCode } from './utils'
+import { compressUrlCode, decompressUrlCode } from './utils'
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
@@ -25,20 +25,27 @@ self.MonacoEnvironment = {
 
 monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true)
 
-export default function editor() {
+export default async function editor() {
   const el = html`<div id="editor" class="editor"></div>`
+  const code = await decompressUrlCode('editor')
+  let editorUpdateDebounce = 0
 
   nextTick(async () => {
     await new Promise((r) => setTimeout(r))
     const editor = editorApi.editor.create(document.getElementById('editor')!, {
       language: 'typescript',
-      value: store.code,
+      value: code || store.code,
       automaticLayout: true,
       theme: store.theme === 'dark' ? 'vs-dark' : 'vs',
     })
     editor.getModel()?.onDidChangeContent(() => {
+      clearTimeout(editorUpdateDebounce)
       store.code = editor.getModel()?.getLinesContent().join('\n') ?? ''
-      compressUrlCode(store.code, 'editor')
+
+      editorUpdateDebounce = setTimeout(() => {
+        console.log('debounced')
+        compressUrlCode('editor', store.code)
+      }, 1000)
     })
 
     store.$on('theme', () => {

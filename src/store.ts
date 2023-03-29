@@ -1,10 +1,7 @@
 import { reactive } from '@arrow-js/core'
-import { decompressUrlCode } from './utils'
 
 const store = reactive({
-  code:
-    (await decompressUrlCode('editor')) ||
-    `/**
+  code: `/**
  * Enter some JavaScript or TypeScript code into the editor to see how it
  * compresses with gzip, brotli, and minification.
  * 

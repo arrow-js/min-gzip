@@ -12,7 +12,7 @@ export function formatBytes(bytes: number, decimals = 2) {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
-export async function compressUrlCode(code: string, param: string) {
+export async function compressUrlCode(param: string, code: string) {
   if (!code) {
     const url = new URL(window.location.href)
     url.searchParams.delete(param)
@@ -32,7 +32,7 @@ export async function decompressUrlCode(param: string) {
   const brotli = await brotliPromise
   const textDecoder = new TextDecoder()
   const base64 = new URLSearchParams(window.location.search).get(param)
-  if (!base64) return
+  if (!base64) return ''
   const compressed = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
   const decompressed = brotli.decompress(compressed)
   const code = textDecoder.decode(decompressed)
