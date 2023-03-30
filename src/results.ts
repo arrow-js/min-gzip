@@ -11,7 +11,7 @@ export default function () {
           <li
             class="result minify"
             data-pin="${() =>
-              store.pin && formatBytes(store.pinnedResults.minify)}"
+              store.pin && formatBytes(store.pinnedResults.min)}"
             data-smaller="${() =>
               store.pin && store.min < store.pinnedResults.min}"
             data-larger="${() =>
