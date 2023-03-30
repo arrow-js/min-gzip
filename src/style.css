@@ -242,13 +242,17 @@ footer a {
   border-radius: 0.5em;
   border: var(--border) 1px solid;
   font-family: monospace;
-  font-size: 12px;
   letter-spacing: -0.05em;
   white-space: nowrap;
   position: relative;
-
-
   font-size: 10px;
+}
+
+.results li[data-smaller] {
+  background-color: rgba(0, 255, 0, .1);
+}
+.results li[data-larger] {
+  background-color: rgba(255, 0, 0, .1);
 }
 
 .results li:first-child {
@@ -259,11 +263,9 @@ footer a {
   margin-right: 0.5em;
   font-weight: 600;
   font-family: sans-serif;
-  font-size: 12px;
   letter-spacing: 0.035em;
   background: var(--bg-transparent);
   border-right: var(--border) 1px solid;
-
   font-size: 10px;
 }
 
@@ -402,6 +404,10 @@ footer a {
     position: static;
     padding: 0;
     box-shadow: none;
+  }
+
+  .option-list[data-show-options] {
+    display: flex;
   }
 
   .option-list li {
