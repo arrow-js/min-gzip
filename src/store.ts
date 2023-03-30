@@ -1,4 +1,4 @@
-import { reactive } from '@arrow-js/core'
+import { reactive, watch } from '@arrow-js/core'
 
 const store = reactive({
   code: `/**
@@ -12,8 +12,14 @@ const store = reactive({
   gzip: 0,
   brotli: 0,
   min: 0,
+  pin: false,
+  pinnedResults: {
+    gzip: 0,
+    brotli: 0,
+    min: 0,
+  },
   useGzip: true,
-  useBrotli: false,
+  useBrotli: true,
   useMinify: true,
   theme:
     localStorage.getItem('theme') ||
@@ -21,5 +27,18 @@ const store = reactive({
       ? 'dark'
       : 'light'),
 })
+
+watch(
+  () => store.pin,
+  () => {
+    if (store.pin) {
+      Object.assign(store.pinnedResults, {
+        gzip: store.gzip,
+        brotli: store.brotli,
+        min: store.min,
+      })
+    }
+  }
+)
 
 export default store

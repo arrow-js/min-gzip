@@ -8,14 +8,22 @@ export default function () {
       ${() =>
         store.useMinify &&
         html`
-          <li class="result minify">
+          <li
+            class="result minify"
+            data-pin="${() =>
+              store.pin && formatBytes(store.pinnedResults.minify)}"
+          >
             <span>min:</span> ${() => formatBytes(store.min)}
           </li>
         `}
       ${() =>
         store.useGzip &&
         html`
-          <li class="result gzip">
+          <li
+            class="result gzip"
+            data-pin="${() =>
+              store.pin && formatBytes(store.pinnedResults.gzip)}"
+          >
             <span>${() => (store.useMinify ? 'min-gzip' : 'gzip')}:</span>
             ${() => formatBytes(store.gzip)}
           </li>
@@ -23,7 +31,11 @@ export default function () {
       ${() =>
         store.useBrotli &&
         html`
-          <li class="result brotli">
+          <li
+            class="result brotli"
+            data-pin="${() =>
+              store.pin && formatBytes(store.pinnedResults.brotli)}"
+          >
             <span>${() => (store.useMinify ? 'min-brotli' : 'brotli')}:</span>
             ${() => formatBytes(store.brotli)}
           </li>
